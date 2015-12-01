@@ -1,0 +1,76 @@
+a {
+	color: #333333;
+	text-decoration: none;
+}
+
+a:hover, a:focus{
+	color: #737373;
+	text-decoration: none;	
+}
+
+.navbar-main{
+	margin-bottom: 0;
+}
+
+.main-header{
+	margin-bottom:0px;
+}
+
+.navbar-noticias-cursos{
+	margin-bottom:40px;
+}
+
+ .navbar-noticias-cursos .navbar-text{
+	font-size: 180%;
+	color: #404040;
+}
+
+.main-noticia{
+	margin-bottom:50px;
+	width:100%;
+}
+
+.main-img-noticia{
+	float:left;
+	margin-right:20px;
+}
+
+.fecha-noticia{
+	color:#FFF;
+	font-size:95%;
+	font-weight:normal;
+	background-color: #b3b3b3;
+}
+
+.title-noticia{
+	display: inline;
+}
+
+h1.title-noticia {
+    font-size: xx-large
+}
+h2.title-noticia {
+    font-size: x-large
+}
+h3.title-noticia {
+    font-size: large
+}
+h4.title-noticia {
+    font-size: medium
+}
+h5.title-noticia {
+    font-size: small
+}
+h6.title-noticia {
+    font-size: x-small
+}
+
+.main-evento{
+	color:#595959;
+	margin-bottom:30px;
+}
+
+.main-tit-evento{
+	font-size:120%;
+	font-weight: 600;
+}
