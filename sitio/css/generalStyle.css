@@ -175,3 +175,14 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0; /* Removes leftover margin */
 }
+
+.afiliado-cursos{
+    margin-bottom: 50px;
+}
+
+.curso-aviso-inscripcion{
+    color:red;
+    font-size:90%;
+}
+
+

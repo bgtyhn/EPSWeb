@@ -11,8 +11,10 @@ $(function(){
 	//Click a algun elemento del option
 	$("#cita-area-sel").change(function(event) {
 		areaSel = $("#cita-area-sel option:selected").val();
-		if(areaSel != "")
+		if(areaSel != ""){
 			mostrarProfesionales(areaSel);
+			$("#cita-horarios-div").css('visibility', 'hidden');
+		}
 	});
 
 	function mostrarProfesionales(area){
@@ -50,7 +52,7 @@ $(function(){
 					//Variable doctor selecccionado
 					doctorSel = vars[i];
 
-					mostrarHorariosProfesional(v[i]);
+					mostrarHorariosProfesional(vars[i]);
 				})
 			)
 		});
@@ -60,7 +62,7 @@ $(function(){
 
 	function mostrarHorariosProfesional(doctor){
 		//#cita-horarios-div visible = si
-
+		$("#txthdisp").html("Horarios disponibles "+doctorSel);
 		$("#cita-horarios-div").css('visibility', 'visible');
 
 		var list = $("#cita-horarios-list");
