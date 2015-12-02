@@ -44,7 +44,7 @@ namespace ProyectoEPS.Models
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "estadisticas_paquete.afiliadosMes";
+            cmd.CommandText = "estadisticas_paquete.listaMultas";
 
             OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
 
@@ -66,12 +66,78 @@ namespace ProyectoEPS.Models
                     });
                 }
             }
-
+            lectorDatos.Close();
+            cmd.Dispose();
+            base.cerrarConexion();
             return multasConsulta;
         }
 
         
-        public 
+        public List<Dictionary<string, object>> afiliadosPorProfesional(string mes)
+        {
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "estadisticas_paquete.afiliadosPorProfesional";
+
+            OracleParameter mesP = new OracleParameter("mes", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            mesP.Value = mes;
+
+            OracleParameter cursor_datos = new OracleParameter("cusor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
+
+            cmd.Parameters.AddRange(new OracleParameter[] { mesP, cursor_datos });
+            OracleDataReader lectorDatos = cmd.ExecuteReader();
+            List<Dictionary<string, object>> datos = new List<Dictionary<string, object>>();
+            if (lectorDatos.HasRows)
+            {
+                while (lectorDatos.Read())
+                {
+                    Dictionary<string, object> valores = new Dictionary<string, object>();
+                    valores.Add("profesionalId", lectorDatos.GetString(0));
+                    valores.Add("profesionalNombre", lectorDatos.GetString(1));
+                    valores.Add("profesionalApellidos", lectorDatos.GetString(2));
+                    valores.Add("profesionalCedula", lectorDatos.GetString(3));
+                    valores.Add("cantidadPacientes", lectorDatos.GetString(4));
+                    datos.Add(valores);
+
+                }
+            }
+            lectorDatos.Close();
+            cmd.Dispose();
+            base.cerrarConexion();
+            return datos;
+        }
+
+        public List<Afiliado> afiliadosAtendidosPorMedico(string idMedico)
+        {
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "estadisticas_paquete.afiliadosPorProfesional";
+
+            OracleParameter idMedicoP = new OracleParameter("idMedico", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            idMedicoP.Value = idMedico;
+
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
+
+            cmd.Parameters.AddRange(new OracleParameter[] { idMedicoP, cursor_datos });
+
+            OracleDataReader lectorDatos = cmd.ExecuteReader();
+            List<Afiliado> afiliadosConsulta = new List<Afiliado>();
+            if (lectorDatos.HasRows)
+            {
+                while (lectorDatos.Read())
+                {
+                    afiliadosConsulta.Add(new Afiliado() {
+                        id = lectorDatos.GetString(0),
+                        password = lectorDatos.GetString(1),
+
+                    });
+                }
+            }
+        }
 
     }
 }
