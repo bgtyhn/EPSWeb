@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/generalStyle.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,6 +30,65 @@
   <!--/-->
 
   <body>
+
+    <!--Modal zone-->
+
+    <div class="modal" id="modal-solicitar-servicio">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Solicitar atención</h4>
+          </div>
+          <form class="form" autocomplete="off" id="cita-form">
+            <div class="modal-body">
+              <div class="col-xs-8 col-xs-offset-2">
+                <h4 class="h4">
+                  <strong>Profesional: </strong>
+                  <span id="cita-doctor">nombre doctor</span>  
+                </h4>
+                <h4 class="h4">
+                  <strong>Área: </strong>
+                  <span id="cita-area">nombre area</span>  
+                </h4>
+                <h4 class="h4">
+                  <strong>Fecha: </strong>
+                  <span id="cita-fecha">fecha cita</span>  
+                </h4>
+                <hr>
+                <div class="form-group">
+                  <label for="cita-duracion">Duración</label>
+                  <input id="cita-duracion" class="form-control" type="number" placeholder="Duración(miutos)" required>
+                </div>
+                <div class="form-group">
+                  <label for="cita-tipoatencion">Tipo de atención</label>
+                  <select id="cita-tipoatencion" class="form-control" type="text" required>
+                    <option value=""></option>
+                    <option value="general">General</option>
+                    <option value="control">Control</option>
+                  </select>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="cita-cancelar">Cancelar</button>
+              <button id="cita-enviar" class="btn btn-primary">
+                Enviar solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- /modal zone -->
+
+
+
+
     <div class="navbar navbar-default navbar-fixed-top navbar-main navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -79,8 +138,8 @@
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
             <h3 class="h3">Escoja un área de la salud para su cita:</h3>
-              <select class="form-control" id="cita-area">
-                <option value=""></option>
+              <select class="form-control" id="cita-area-sel">
+                <option value="" selected></option>
                 <option value="general">Consulta general</option>
                 <option value="medicina">Medicina</option>
                 <option value="odontologia">Odontología</option>
@@ -90,41 +149,22 @@
           </div>
           <hr>
           <div class="row">
-            <div class="col-xs-3">
+            <div class="col-xs-3" id="cita-profesionales-div">
               <h4 class="h4">
                 Profesionales del área
               </h4>
               <hr>
-              <div class="list-group">
-                <a href="#" class="list-group-item">Doctor 1</a>
-                <a href="#" class="list-group-item">Doctor 2</a>
-                <a href="#" class="list-group-item">Doctor 3</a>
-                <a href="#" class="list-group-item">Doctor 4</a>
-                <a href="#" class="list-group-item">Doctor 5</a>
+              <div class="list-group" id="cita-profesionales-list">
+                <!--Dinámico-->
               </div>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-9" id="cita-horarios-div">
               <h4 class="h4">
                 Horarios disponibles
               </h4>
               <hr>
-              <div class="list-group">
-                <a href="#" class="list-group-item">
-                  <h5><strong>Fecha:</strong> fecha</h5>
-                  <span>Hora inicio - Hora fin</span>
-                </a>
-                <a href="#" class="list-group-item">
-                  <h5><strong>Fecha:</strong> fecha</h5>
-                  <span>Hora inicio - Hora fin</span>
-                </a>
-                <a href="#" class="list-group-item">
-                  <h5><strong>Fecha:</strong> fecha</h5>
-                  <span>Hora inicio - Hora fin</span>
-                </a>
-                <a href="#" class="list-group-item">
-                  <h5><strong>Fecha:</strong> fecha</h5>
-                  <span>Hora inicio - Hora fin</span>
-                </a>
+              <div class="list-group" id="cita-horarios-list">
+                <!--Dinámico-->
               </ul>
             </div>
           </div>
@@ -138,5 +178,7 @@
     <script src="../../libs/jquery/jquery-2.1.4.min.js"></script>
     <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../libs/geturlvars.js"></script>
+
+    <script src="../../js/afiliadoSolicitarServicio.js"></script>
   </body>
 </html>
