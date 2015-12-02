@@ -1,3 +1,21 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+footer{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #222;
+	border-color: #080808;
+	color:#a6a6a6;
+}
+
+footer .h4 {
+	color:#d9d9d9;
+}
+
 a {
 	color: #333333;
 	text-decoration: none;
@@ -16,6 +34,11 @@ a:hover, a:focus{
 	margin-bottom:0px;
 }
 
+.noticia-header{
+	margin-bottom:0px;
+	padding-bottom:20px;
+}
+
 .navbar-noticias-cursos{
 	margin-bottom:40px;
 }
@@ -23,6 +46,16 @@ a:hover, a:focus{
  .navbar-noticias-cursos .navbar-text{
 	font-size: 180%;
 	color: #404040;
+}
+
+.navbar-noticias-volver .navbar-text{
+	font-size: 180%;
+	color: #404040;
+}
+
+.navbar-noticias-volver{
+	margin-top:60px;
+	margin-bottom:0px;
 }
 
 .main-noticia{
@@ -40,6 +73,12 @@ a:hover, a:focus{
 	font-size:95%;
 	font-weight:normal;
 	background-color: #b3b3b3;
+}
+
+.noticia-imagen{
+	display: block;
+    margin-left: auto;
+    margin-right: auto
 }
 
 .title-noticia{
