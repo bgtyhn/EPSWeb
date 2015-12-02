@@ -34,11 +34,16 @@ namespace ProyectoEPS.Models
             {
                 cmd.ExecuteNonQuery();
                 System.Diagnostics.Debug.WriteLine(cmd.Parameters["resultado"].Value);
-                return int.Parse(cmd.Parameters["resultado"].Value.ToString());
+                int respuesta = int.Parse(cmd.Parameters["resultado"].Value.ToString());
+                cmd.Dispose();
+                base.cerrarConexion();
+                return respuesta;
                 
             }
             catch (OracleException e)
             {
+                cmd.Dispose();
+                base.cerrarConexion();
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 throw e;
             }
@@ -59,7 +64,10 @@ namespace ProyectoEPS.Models
             try
             {
                 cmd.ExecuteNonQuery();
-                return int.Parse(cmd.Parameters["resultado"].Value.ToString());
+                int respuesta = int.Parse(cmd.Parameters["resultado"].Value.ToString());
+                cmd.Dispose();
+                base.cerrarConexion();
+                return respuesta;
             }
             catch (Exception e)
             {

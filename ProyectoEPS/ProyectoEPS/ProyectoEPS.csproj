@@ -100,13 +100,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AtencionCliente.cs" />
+    <Compile Include="Models\Cita.cs" />
     <Compile Include="Models\Conexion.cs" />
+    <Compile Include="Models\CRUDAtencionCliente.cs" />
+    <Compile Include="Models\CRUDCitas.cs" />
     <Compile Include="Models\CRUDEjemplo.cs" />
+    <Compile Include="Models\CRUDEstadistica.cs" />
+    <Compile Include="Models\CRUDMedicamentos.cs" />
+    <Compile Include="Models\CRUDNoticias.cs" />
+    <Compile Include="Models\CRUDProfesionales.cs" />
     <Compile Include="Models\CRUDUsuario.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Medicamento.cs" />
     <Compile Include="Models\MensajeRespuesta.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Multa.cs" />
+    <Compile Include="Models\Noticia.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Profesional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
