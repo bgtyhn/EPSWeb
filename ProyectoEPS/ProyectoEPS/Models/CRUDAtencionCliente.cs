@@ -78,7 +78,7 @@ namespace ProyectoEPS.Models
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "atencion_cliente_paquete.verAtencionCliente";
+            cmd.CommandText = "atencion_cliente_paquete.verDetalleAtencionCliente";
 
             OracleParameter idACP = new OracleParameter("idAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             idACP.Value = idAC;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Oracle.DataAccess.Client;
-
+using Oracle.DataAccess.Types;
 
 namespace ProyectoEPS.Models
 {
@@ -14,25 +14,29 @@ namespace ProyectoEPS.Models
 
         }
 
-        public void crearCita(string fechaCita, int duracionCita, int tipo_atencionCita, string estadoCita, int calificacionCita, string profesionalCita, string afiliadoCita)
+        public void crearCita(string fechaCita, string duracionCita, string tipo_atencionCita, string estadoCita, string calificacionCita, string profesionalCita, string afiliadoCita)
         {
+            DateTime d = DateTime.Parse(fechaCita);
+            OracleTimeStamp m = new OracleTimeStamp(DateTime.Parse(fechaCita));
             base.abrirConexion();
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "citas_paquete.crearCita";
+            OracleDataAdapter dataAdapter = new OracleDataAdapter(cmd);
+            dataAdapter.ReturnProviderSpecificTypes = false;
             OracleParameter fechaCitaP = new OracleParameter("fechaCita", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
-            fechaCitaP.Value = fechaCita;
+            fechaCitaP.Value = d.ToString("DD/MM/YYYY HH:MI:SS");
             OracleParameter duracionCitaP = new OracleParameter("duracionCita", OracleDbType.Int16, System.Data.ParameterDirection.Input);
-            duracionCitaP.Value = duracionCita;
+            duracionCitaP.Value = int.Parse(duracionCita);
             OracleParameter tipo_atencionCitaP = new OracleParameter("tipo_atencionCita", OracleDbType.Int16, System.Data.ParameterDirection.Input);
-            tipo_atencionCitaP.Value = tipo_atencionCita;
+            tipo_atencionCitaP.Value = int.Parse(tipo_atencionCita);
             OracleParameter estadoCitaP = new OracleParameter("estadoCita", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             duracionCitaP.Value = estadoCita;
             OracleParameter calificacionCitaP = new OracleParameter("calificacionCita", OracleDbType.Int16, System.Data.ParameterDirection.Input);
-            calificacionCitaP.Value = calificacionCita;
+            calificacionCitaP.Value = int.Parse(calificacionCita);
             OracleParameter profesionalCitaP = new OracleParameter("profesionalCita", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
-            calificacionCitaP.Value = calificacionCita;
+            profesionalCitaP.Value = profesionalCita;
             OracleParameter afiliadoCitaP = new OracleParameter("afiliadoCita", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             afiliadoCitaP.Value = afiliadoCita;
             cmd.Parameters.AddRange(new OracleParameter[] { fechaCitaP, duracionCitaP, tipo_atencionCitaP,
@@ -130,7 +134,7 @@ namespace ProyectoEPS.Models
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "citas_paquete.verHorariosCitas";
+            cmd.CommandText = "citas_paquete.verHorariosCita";
             OracleParameter areaCitaP = new OracleParameter("areaCita", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             areaCitaP.Value = areaCita;
             OracleParameter fechaSolicitadaP = new OracleParameter("fechaSolicitada", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
@@ -155,13 +159,12 @@ namespace ProyectoEPS.Models
                         afiliado = lectorDatos.GetString(7)
                     });
                 }
-                lectorDatos.Close();
-                cmd.Dispose();
-                base.cerrarConexion();
 
             }
+            lectorDatos.Close();
+            cmd.Dispose();
+            base.cerrarConexion();
             return citasConsulta;
-
         }
 
         public List<Profesional> verProfesionalesArea(string areaDoctor)
@@ -200,7 +203,7 @@ namespace ProyectoEPS.Models
             return profesionalesConsulta;
         }
 
-        public int consultaPago(int idCita)
+        public int consultaPago(string idCita)
         {
             base.abrirConexion();
             OracleCommand cmd = new OracleCommand();
@@ -208,7 +211,7 @@ namespace ProyectoEPS.Models
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "citas_paquete.consultarPago";
             OracleParameter idCitaP = new OracleParameter("idCita", OracleDbType.Int16, System.Data.ParameterDirection.Input);
-            idCitaP.Value = idCitaP;
+            idCitaP.Value = int.Parse(idCita);
             OracleParameter valorPago = new OracleParameter("valorPago", OracleDbType.Int32, System.Data.ParameterDirection.Output);
             valorPago.Size = 1024;
             cmd.Parameters.AddRange(new OracleParameter[] { idCitaP, valorPago });

@@ -32,7 +32,7 @@ namespace ProyectoEPS.Models
 
             cmd.ExecuteNonQuery();
 
-            int cantidad = int.Parse(cmd.Parameters["cantidadAfiliado"].Value.ToString());
+            int cantidad = int.Parse(cmd.Parameters["cantidadAfiliados"].Value.ToString());
             cmd.Dispose();
             base.cerrarConexion();
             return cantidad;
@@ -44,7 +44,7 @@ namespace ProyectoEPS.Models
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "estadisticas_paquete.listaMultas";
+            cmd.CommandText = "estadisticas_paquete.listarMultas";
 
             OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
 
@@ -115,7 +115,7 @@ namespace ProyectoEPS.Models
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "estadisticas_paquete.afiliadosPorProfesional";
+            cmd.CommandText = "estadisticas_paquete.afiliadosAtentidosPorMedidco";
 
             OracleParameter idMedicoP = new OracleParameter("idMedico", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             idMedicoP.Value = idMedico;
@@ -133,10 +133,20 @@ namespace ProyectoEPS.Models
                     afiliadosConsulta.Add(new Afiliado() {
                         id = lectorDatos.GetString(0),
                         password = lectorDatos.GetString(1),
-
+                        nombre = lectorDatos.GetString(2),
+                        apellidos = lectorDatos.GetString(3),
+                        edad = lectorDatos.GetInt32(4),
+                        cedula = lectorDatos.GetString(5),
+                        fecha_afiliacion = lectorDatos.GetString(6),
+                        estado = lectorDatos.GetString(7),
+                        categoria = lectorDatos.GetInt32(9)
                     });
                 }
             }
+            lectorDatos.Close();
+            cmd.Dispose();
+            base.cerrarConexion();
+            return afiliadosConsulta;
         }
 
     }

@@ -95,8 +95,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AfiliadosController.cs" />
+    <Compile Include="Controllers\AtencionClienteController.cs" />
+    <Compile Include="Controllers\EstadisticasController.cs" />
+    <Compile Include="Controllers\MedicamentosController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProfesionalController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\CitasController.cs" />
+    <Compile Include="Models\CRUDAfiliado.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

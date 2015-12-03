@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace ProyectoEPS.Models
 {
@@ -12,6 +13,54 @@ namespace ProyectoEPS.Models
         public CRUDProfesionales(): base()
         {
 
+        }
+
+        public void adicionarProfesional(string idProfesional,string passwordProfesional,string nombreProfesional,string apellidosProfesional,string cedulaProfesional ,string ruta ,string correoProfesional ,string areaProfesional)
+        {
+
+        }
+
+        public byte[] imagen(string idProfesional)
+        {
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "profesionales_paquete.verDetalleProfesional";
+            OracleParameter idProfesionalP = new OracleParameter("idProfesional", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            idProfesionalP.Value = idProfesional;
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
+            cmd.Parameters.AddRange(new OracleParameter[] { idProfesionalP, cursor_datos });
+
+            Profesional profesionalConsulta = new Profesional();
+            OracleDataReader lectorDatos = cmd.ExecuteReader();
+            byte[] datos = new byte[0];
+            if (lectorDatos.HasRows)
+            {
+                lectorDatos.Read();
+                datos = lectorDatos.GetOracleBlob(4).Value;
+
+            }
+            return datos;
+        }
+
+        public void crear(string ruta)
+        {
+            System.Diagnostics.Debug.WriteLine("ruta del archivo: " + ruta);
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "imageFunction";
+
+            OracleParameter rutaP = new OracleParameter("ruta", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            rutaP.Value = ruta;
+
+            cmd.Parameters.Add(rutaP);
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            base.cerrarConexion();
         }
 
         public List<Cita> citasDelDia(string idProfesional, string fechaDia)
@@ -25,7 +74,7 @@ namespace ProyectoEPS.Models
             idProfesionalP.Value = idProfesional;
             OracleParameter fechaDiaP = new OracleParameter("fechaDia", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             fechaDiaP.Value = fechaDia;
-            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.Varchar2, System.Data.ParameterDirection.Output);
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
             cmd.Parameters.AddRange(new OracleParameter[] { idProfesionalP, fechaDiaP, cursor_datos });
             OracleDataReader lectorDatos = cmd.ExecuteReader();
             List<Cita> citasConsulta = new List<Cita>();
@@ -62,7 +111,8 @@ namespace ProyectoEPS.Models
             cmd.CommandText = "profesionales_paquete.verDetalleProfesional";
             OracleParameter idProfesionalP = new OracleParameter("idProfesional", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             idProfesionalP.Value = idProfesional;
-            cmd.Parameters.Add(idProfesionalP);
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
+            cmd.Parameters.AddRange(new OracleParameter[] { idProfesionalP , cursor_datos});
 
             Profesional profesionalConsulta = new Profesional();
             OracleDataReader lectorDatos = cmd.ExecuteReader();
@@ -226,7 +276,7 @@ namespace ProyectoEPS.Models
             cmd.CommandText = "profesionales_paquete.citasAtendidasProfesional";
             OracleParameter idProfesionalP = new OracleParameter("idProfesional", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             idProfesionalP.Value = idProfesional;
-            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.Varchar2, System.Data.ParameterDirection.Output);
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
             cmd.Parameters.AddRange(new OracleParameter[] { idProfesionalP, cursor_datos });
 
             OracleDataReader lectorDatos = cmd.ExecuteReader();
@@ -265,7 +315,7 @@ namespace ProyectoEPS.Models
             cmd.CommandText = "profesionales_paquete.citasPendientesProfesional";
             OracleParameter idProfesionalP = new OracleParameter("idProfesional", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             idProfesionalP.Value = idProfesional;
-            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.Varchar2, System.Data.ParameterDirection.Output);
+            OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
             cmd.Parameters.AddRange(new OracleParameter[] { idProfesionalP, cursor_datos});
 
             OracleDataReader lectorDatos = cmd.ExecuteReader();
