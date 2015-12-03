@@ -211,3 +211,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top:40px;
     margin-bottom: 40px;
 }
+
+.cita-pbody{
+    font-size:115%;
+}
+
+.cita-panel{
+    margin-top:30px;
+}
