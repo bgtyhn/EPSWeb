@@ -68,6 +68,11 @@ a:hover, a:focus{
 	margin-right:20px;
 }
 
+.afiliado-img-medicamento{
+    float:left;
+    margin-right:20px;
+}
+
 .fecha-noticia{
 	color:#FFF;
 	font-size:95%;
@@ -185,4 +190,10 @@ input[type=number]::-webkit-outer-spin-button {
     font-size:90%;
 }
 
+.medicamento-panel{
+    margin-bottom:30px;
+}
 
+.cita-afiliado-panel{
+    margin-bottom:40px;
+}
