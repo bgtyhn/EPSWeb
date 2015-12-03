@@ -1,6 +1,11 @@
 $(function(){
 	//Generar lista de cursos
 
+	//Obtener de url
+	var idAfiliado = "idaf";
+
+	var cursoIncribir = "idc";
+
 	generarCursos();
 
 	function generarCursos(){
@@ -119,6 +124,16 @@ $(function(){
 		var nombre = curso.nombre;
 		$("#modal-curso-nombre").html("Seguro que se va a inscribir al curso "+nombre+"?");
 		$('#modal-curso').modal('show');
+		cursoInscribir = curso.id;
+	}
+
+	$("#curso-inscribir").click(function(event) {
+		inscribirCurso(idAfiliado, cursoInscribir);
+	});
+
+	function inscribirCurso(idAfiliado, cursoInscribir){
+		alert("inscribir curso: "+cursoInscribir+" afiliado "+idAfiliado);
+		$('#modal-curso').modal('hide');
 	}
 
 })
