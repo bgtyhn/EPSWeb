@@ -93,8 +93,8 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="citas-pendientes.html">Citas pendientes</a></li>
-            <li  class="active"><a href="citas-historial.html">Historial de citas</a></li>
-            <li><a href="citas-calificar.html">Citas por calificar</a></li>
+            <li><a href="citas-historial.html">Historial de citas</a></li>
+            <li class="active"><a href="citas-calificar.html">Citas por calificar</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="multas.html">Multas</a></li>
@@ -113,9 +113,9 @@
             <div class="col-xs-8 col-xs-offset-2">
               <div class="form-inline">
                 <div class="form-group">
-                  <label for="cita-historial-area-sel"><h3>Área:</h3></label>
+                  <label for="cita-calificar-area-sel"><h3>Área:</h3></label>
                   &nbsp&nbsp&nbsp
-                  <select class="form-control" id="cita-historial-area-sel">
+                  <select class="form-control" id="cita-calificar-area-sel">
                     <option value="todas">Todas</option>
                     <option value="general">Consulta general</option>
                     <option value="medicina">Medicina</option>
@@ -149,7 +149,26 @@
                     <h4>Profesional</h4>
                     <h4>Area</h4>
                     <h4>Pago: (si, cuanto?/no)</h4>
-                    <br>
+
+                    
+                    <div class="form-inline pull-right">
+                      <div class="form-group">
+                        <label for="cita-calificar-sel"><h4>Calificar:</h4></label>
+                        &nbsp&nbsp&nbsp
+                        <select class="form-control" id="cita-calificar-sel">
+                          <option value="1">1 - Muy malo</option>
+                          <option value="2">2 - Malo</option>
+                          <option value="3">3 - Regular</option>
+                          <option value="4">4 - Bueno</option>
+                          <option value="5">5 - Muy bueno</option>
+                        </select>
+                        <button class="btn btn-success">
+                          Calificar!
+                        </button>
+                      </div>
+                    </div>
+
+
                     <button class="btn btn-default btn-diagnostico" type="button" id="diag-collapse-btn">
                       Ver diagnostico y medicamentos
                     </button>
@@ -202,6 +221,6 @@
     <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../libs/geturlvars.js"></script>
 
-    <script src="../../js/afiliadoHistorial.js"></script>
+    <script src="../../js/afiliadoCalificar.js"></script>
   </body>
 </html>

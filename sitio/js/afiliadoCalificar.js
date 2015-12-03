@@ -1,19 +1,29 @@
 $(function(){
 
-	$("#cita-historial-area-sel").val("todas");
+	$("#cita-calificar-area-sel").val("todas");
 
-	var area = $("#cita-historial-area-sel option:selected").val();
+	var area = $("#cita-calificar-area-sel option:selected").val();
 
-	cargarHistorialCitas(area);
+	cargarCitasCalificar(area);
 
-	$("#cita-historial-area-sel").change(function(event) {
-		areaSel = $("#cita-historial-area-sel option:selected").val();
+	$("#cita-calificar-area-sel").change(function(event) {
+		areaSel = $("#cita-calificar-area-sel option:selected").val();
 		if(areaSel != ""){
 			cargarHistorialCitas(areaSel);
 		}
 	});
 
-	function cargarHistorialCitas(area){
+	function calificarCita(cita, calificacion){
+
+		$("#aviso-"+cita.id).remove();
+
+		if(calificacion == '')
+			$("#cita-calificar-sel-"+cita.id).after($("<span id='aviso-"+cita.id+"'><br>Debe seleccionar</span>").addClass("curso-aviso-inscripcion"));
+
+		console.log("cita: "+cita.id+", calificacion "+calificacion);
+	}
+
+	function cargarCitasCalificar(area){
 
 		$("#citas-lista").empty();
 
@@ -23,7 +33,7 @@ $(function(){
 
 		for(i = 0; i < 4; i++){
 			citas.push({
-
+				id : i,
 				fecha : "fecha "+i+" - "+area,
 				tipo : "tipo "+i+" - "+area,
 				profesional : "profesional "+i+" - "+area,
@@ -55,12 +65,54 @@ $(function(){
 					)
 				]);
 
+			var formCalificacion = $("<div></div>").addClass("form-inline pull-right");
+
+			var fgCalificacion = $("<div></div>").addClass("form-group");
+
+			fgCalificacion.append([
+
+				$("<button>Calificar!</button>").addClass("btn btn-success").click(function(event){
+					var calificacion = $("#cita-calificar-sel-"+i+" option:selected").val();
+					calificarCita(cita, calificacion);
+				}),
+				$("<select id='cita-calificar-sel-"+i+"' required></select>").addClass("form-control").append([
+					$("<option value=''> </option>"),
+					$("<option value='1'>1 - Muy malo</option>"),
+					$("<option value='2'>2 - Malo</option>"),
+					$("<option value='3'>3 - Regular</option>"),
+					$("<option value='4'>4 - Bueno</option>"),
+					$("<option value='5'>5 - Muy Bueno</option>")
+				])
+			]);
+
+			formCalificacion.append(fgCalificacion);
+
+			/*
+
+			<div class="form-inline pull-right">
+              <div class="form-group">
+                <label for="cita-historial-area-sel"><h4>Calificar:</h4></label>
+                &nbsp&nbsp&nbsp
+                <select class="form-control" id="cita-historial-area-sel">
+                  <option value="1">1 - Muy malo</option>
+                  <option value="2">2 - Malo</option>
+                  <option value="3">3 - Regular</option>
+                  <option value="4">4 - Bueno</option>
+                  <option value="5">5 - Muy bueno</option>
+                </select>
+                <button class="btn btn-success">
+                  Calificar!
+                </button>
+              </div>
+            </div>
+			*/
+
 			var inf = [
 						$("<hr>"),
 						$("<h4>Profesional: "+cita.profesional+"</h4>"),
 						$("<h4>Area: "+cita.area+"</h4>"),
 						$("<h4>Pago: "+cita.pago+"</h4>"),
-						$("<h4>Calificacion: "+cita.calificacion+"</h4>"),
+						formCalificacion,
 						$("<br>")
 					  ]
 
