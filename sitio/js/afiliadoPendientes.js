@@ -1,6 +1,6 @@
 $(function(){
 	
-	$("#cita-pendiente-area-sel").val("general");
+	$("#cita-pendiente-area-sel").val("todas");
 
 	var area = $("#cita-pendiente-area-sel option:selected").val();
 
@@ -25,6 +25,7 @@ $(function(){
 				fecha : "Fecha "+i+" - "+area,
 				tipo : "Tipo "+i+" - "+area,
 				profesional : "Profesional "+i+" - "+area,
+				area : "Area "+i+" todas"
 			})
 		}
 
@@ -46,8 +47,9 @@ $(function(){
 			]);
 
 			var doc = $("<h4>"+c.profesional+"</h4>");
+			var area = $("<h4>"+c.area+"</h4>");
 
-			panel.append(panelBody.append([row, $("<hr>")]).append(doc));
+			panel.append(panelBody.append([row, $("<hr>")]).append([doc, area]));
 
 			$("#citas-lista").append(panel);
 
