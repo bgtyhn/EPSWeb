@@ -68,6 +68,11 @@ a:hover, a:focus{
 	margin-right:20px;
 }
 
+.afiliado-img-medicamento{
+    float:left;
+    margin-right:20px;
+}
+
 .fecha-noticia{
 	color:#FFF;
 	font-size:95%;
@@ -174,4 +179,30 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none;
   margin: 0; /* Removes leftover margin */
+}
+
+.afiliado-cursos{
+    margin-bottom: 50px;
+}
+
+.curso-aviso-inscripcion{
+    color:red;
+    font-size:90%;
+}
+
+.medicamento-panel{
+    margin-bottom:30px;
+}
+
+.cita-afiliado-panel{
+    margin-bottom:40px;
+}
+
+.collapse-diagnostico{
+    margin-top: 10px;
+}
+
+.btn-diagnostico{
+    width:100%;
+    margin-top:10px;
 }
