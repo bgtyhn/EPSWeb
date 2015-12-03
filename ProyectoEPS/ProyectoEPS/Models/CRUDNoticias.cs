@@ -59,7 +59,7 @@ namespace ProyectoEPS.Models
             OracleParameter encabezadoNoticiaP = new OracleParameter("encabezadoNoticia", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             encabezadoNoticiaP.Value = encabezadoNoticia;
             OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
-            cmd.Parameters.Add(new OracleParameter[] { tituloNoticiaP, contenidoNoticiaP, encabezadoNoticiaP });
+            cmd.Parameters.AddRange(new OracleParameter[] { tituloNoticiaP, contenidoNoticiaP, encabezadoNoticiaP, cursor_datos });
             OracleDataReader lectorDatos = cmd.ExecuteReader();
             List<Noticia> noticiasConsulta = new List<Noticia>();
             if (lectorDatos.HasRows)
@@ -93,7 +93,7 @@ namespace ProyectoEPS.Models
             //queda pendiente hasta que se sepa como ingresar imagen
         }
 
-        public Noticia detalleNoticia(int idNoticia)
+        public Noticia detalleNoticia(string idNoticia)
         {
             base.abrirConexion();
             OracleCommand cmd = new OracleCommand();
@@ -101,7 +101,7 @@ namespace ProyectoEPS.Models
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "noticias_paquete.detalleNoticia";
             OracleParameter idNoticiaP = new OracleParameter("idNoticia", OracleDbType.Int32, System.Data.ParameterDirection.Input);
-            idNoticiaP.Value = idNoticia;
+            idNoticiaP.Value = int.Parse(idNoticia);
             OracleParameter cursor_datos = new OracleParameter("cursor_datos", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
 
             cmd.Parameters.AddRange(new OracleParameter[] { idNoticiaP, cursor_datos });
@@ -129,7 +129,7 @@ namespace ProyectoEPS.Models
             return noticiaConsulta;
         }
 
-        public void eliminarNoticia(int idNoticia)
+        public void eliminarNoticia(string idNoticia)
         {
             base.abrirConexion();
             OracleCommand cmd = new OracleCommand();
@@ -137,7 +137,7 @@ namespace ProyectoEPS.Models
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "noticias_paquete.eliminarNoticia";
             OracleParameter idNoticiaP = new OracleParameter("idNoticia", OracleDbType.Int32, System.Data.ParameterDirection.Input);
-            idNoticiaP.Value = idNoticia;
+            idNoticiaP.Value = int.Parse(idNoticia);
             cmd.Parameters.Add(idNoticiaP);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
