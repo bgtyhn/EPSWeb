@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Administrador EPS</title>
+
+    <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/generalStyle.css">
+
+    <!-- Custom styles for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <!--Auto update browser -->
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <!--/-->
+
+  <body>
+
+    <!--Modal zone-->
+
+    <div class="modal" id="modal-agregar-profesional">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="titulo-modal-profesional">Registrar nuevo profesional</h4>
+          </div>
+          <form class="form" autocomplete="off" id="agregar-profesional-form">
+            <div class="modal-body">
+              <div class="col-xs-8 col-xs-offset-2">
+                <div class="form-group">
+                  <label for="profesional-id">ID</label>
+                  <input id="profesional-id" class="form-control" type="text" placeholder="ID del profesional" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-password">Contraseña</label>
+                  <input id="profesional-password" class="form-control" type="text" placeholder="Contraseña" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-nombre">Nombre</label>
+                  <input id="profesional-nombre" class="form-control" type="text" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-apellidos">Apellidos</label>
+                  <input id="profesional-apellidos" class="form-control" type="text" placeholder="Apellidos" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-cedula">Cedula</label>
+                  <input id="profesional-cedula" class="form-control" type="number" placeholder="Cedula" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-correo">Correo electrónico</label>
+                  <input id="profesional-correo" class="form-control" type="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-group">
+                  <label for="profesional-area">Área de la salud</label>
+                  <select id="profesional-area" class="form-control" type="text" required>
+                    <option value=""></option>
+                    <option value="general">General</option>
+                    <option value="medicina">Medicina general</option>
+                    <option value="odontologia">Odontología</option>
+                    <option value="psicologia">Psicología</option>
+                  </select>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="registro-cancelar">Cancelar</button>
+              <button id="profesional-registrar" class="btn btn-primary">
+                Registrar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- /modal zone -->
+
+
+
+
+    <div class="navbar navbar-default navbar-fixed-top navbar-main navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Sistema EPS
+          </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">
+            Sesión activa como: nombre
+          </li>
+          <li>
+            <a href="../../index.html">
+              Cerrar sesión
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="index.html">Profesionales <span class="sr-only">(current)</span></a></li>
+            <li><a href="afiliados.html">Afiliados</a></li>
+            <li><a href="atencion-cliente.html">Atencion al cliente</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="medicamentos.html">Medicamentos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="noticias.html">Noticias</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="parametros.html">Parametros</a></li>
+            <li><a href="estadisticas.html">Estadisticas</a></li>
+            
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="solicitudes-afiliacion.html">Solicitudes de afiliación</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Administrar profesionales</h1>
+          
+          <div class="row">
+            
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Contraseña</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Cédula</th>
+                  <th>Correo</th>
+                  <th>Área</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="lista-profesionales">
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button id="profesional-agregar" class="btn btn-xs btn-success">
+                      <span class="glyphicon glyphicon-plus">
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../libs/jquery/jquery-2.1.4.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/geturlvars.js"></script>
+
+    <script src="../../js/adminProfesionales.js"></script>
+  </body>
+</html>
