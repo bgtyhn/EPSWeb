@@ -16,5 +16,8 @@ namespace ProyectoEPS.Models
         public string fecha_afiliacion { get; set; }
         public string estado { get; set; }
         public int categoria { get; set; }
+        public string correo { get; set; }
+        
+
     }
 }

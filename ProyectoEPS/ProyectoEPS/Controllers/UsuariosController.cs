@@ -23,8 +23,11 @@ namespace ProyectoEPS.Controllers
                 System.Diagnostics.Debug.WriteLine("acción pedida: " + mensajeSolcitud.accion);
                 MethodInfo metodo = cu.GetType().GetMethod(mensajeSolcitud.accion);
                 object result = metodo.Invoke(cu, mensajeSolcitud.parametrosMetodo());
-                System.Diagnostics.Debug.WriteLine("muestra un mensaje");
-                System.Diagnostics.Debug.WriteLine(result.ToString());
+                if (result != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("muestra un mensaje");
+                    System.Diagnostics.Debug.WriteLine(result.ToString());
+                }
                 //MensajeRespuesta mensaje = new MensajeRespuesta { exito = 1 , datos = el.ToArray()};
                 mensaje = new MensajeRespuesta { exito = 1, datos = result , mensajeExito="Operación exitosa"};
                 return mensaje;

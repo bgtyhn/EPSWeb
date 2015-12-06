@@ -4,11 +4,14 @@
         texto = $('#txt1').val();
         alert(texto);
         //var diccionario = { parametro1: 'p1', parametro2: 'p2' };
-        var diccionario = { 'idAfiliado': '1' };
-        var message = { accion: 'cuotafiliado', mensaje: 'holi', valores: diccionario };
+        //var diccionario = { 'idN' : '2' ,'fecha_expiracionN': '2015/10/10', 'contenidoN' :'eL CONTENidoU ','encabezadoN' : 'EncabezaU', 'tituloNU' : 'titulozU'};
+        var diccionario = { 'idNoticia' : '2'};
+        //var diccionario = { 'areaCita' : 'med', 'fechaSolicitada' : '2015/10/10' }
+        //var diccionario = {'idAfiliado' : 'any','passwordAfiliado': 'som', 'nombreAfiliado': 'name', 'apellidosAfiliado' : 'lastN', 'categoriaAfiliado' : '1','edadAfiliado' :'19','correoAfiliado' : 'myCorreo@', 'cedulaAfiliado' : '6754' };
+        var message = { accion: 'detalleNoticia', mensaje: 'holi', valores: diccionario };
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:6570/api/Afiliados/accionAfiliados',
+            url: 'http://localhost:6570/api/Noticia/accionNoticias',
             data: JSON.stringify(message),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -43,20 +46,17 @@
     });
 
     $('#mostrarI').click(function () {
-        var options = {};
-        options.url = "http://localhost:6570/api/Profesional/imagenProfesional";
-        options.type = "POST";
-        options.dataType = "json";
-        options.contentType = "application/json";
-        options.success = function (results) {
-            console.log(results);
-            $("#imgContainer").empty();
-            for (var i = 0; i < results.length; i++) {
-                $("#imgContainer").append("<img src='" + "api/images/" + results[i] + "' /> <br />");
+        $.ajax({
+            url: 'http://localhost:6570/api/Profesional/imagenProfesional',
+            contentType: "application/json",
+            dataType : "json",
+            type: 'POST',
+            success: function (data) {
+                console.log(data);
+                $("#imag").attr("src", data);
             }
-        };
-        options.error = function (err) { alert("falla"); alert(err.statusText); };
-        $.ajax(options);
+        });
+        
 
     });
 

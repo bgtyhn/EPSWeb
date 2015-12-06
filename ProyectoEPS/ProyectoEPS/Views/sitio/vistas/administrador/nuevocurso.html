@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Administrador EPS</title>
+
+    <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../css/generalStyle.css">
+
+    <!-- Custom styles for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
+<link href="../../libs/toastr/toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../libs/select2/css/select2.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <!--Auto update browser -->
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <!--/-->
+
+  <body>
+
+    <!--Modal zone-->
+
+    
+
+    <!-- /modal zone -->
+
+
+
+
+    <div class="navbar navbar-default navbar-fixed-top navbar-main navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Sistema EPS
+          </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">
+            Sesión activa como: <span id="sesion-nombre"> </span>
+          </li>
+          <li>
+            <a onclick="cerrarSesion();">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="index.html">Profesionales <span class="sr-only">(current)</span></a></li>
+            <li><a href="afiliados.html">Afiliados</a></li>
+            <li><a href="atencion-cliente.html">Atencion al cliente</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="medicamentos.html">Medicamentos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="noticias.html">Noticias</a></li>
+            <li class="active"><a href="cursos.html">Cursos</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="parametros.html">Parametros</a></li>
+            <li><a href="estadisticas.html">Estadisticas</a></li>
+            
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="solicitudes-afiliacion.html">Solicitudes de afiliación</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Nuevo curso</h1>
+          
+          <div class="row">
+            
+            <div class="col-xs-2">
+              
+            </div>
+            <div class="col-xs-8">
+              
+
+              <div id="lista-cursos">
+                <form id="form-curso">
+                  <div class="form-group">
+                    <label for="curso-nombre">Nombre</label>
+                    <input type="text" placeholder="Nombre del curso" class="form-control" id="curso-nombre"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="curso-descripcion">Descripción</label>
+                    <textarea id="curso-descripcion" cols="30" rows="5" class="form-control" placeholder="Descripción del curso..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="curso-sitio">Sitio</label>
+                    <input type="text" placeholder="Sitio para el curso" class="form-control" id="curso-sitio"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="curso-cupo">Máximo personas</label>
+                    <input type="number" placeholder="Cupo del curso" class="form-control" id="curso-cupo"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="curso-profesional">Profesional encargado</label>
+                    <select type="text" placeholder="Profesional que va a orientar curso" class="form-control" id="curso-profesional"  required>
+                      <!--Dinámico-->
+                    </select>
+                  </div>
+                  <button class="btn btn-primary btn-lg">Guardar curso</button>
+                </form>
+                
+                <!--
+                <hr>
+                <div id="eventosCurso">
+                  <form id="form-evento-0">
+                      <div class="form-group">
+                        <label for="evento-hora-0">Hora</label>
+                        <input type="text" placeholder="Hora del evento" class="form-control" id="evento-hora-0"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="evento-fecha-0">Fecha</label>
+                        <input type="text" placeholder="Fecha del evento" class="form-control" id="evento-fecha-0"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="evento-duracion-0">Duración</label>
+                        <input type="number" placeholder="Duración del evento en minutos" class="form-control" id="evento-duracion-0"  required>
+                      </div>
+                      <div class="form-group">
+                        <button id="add-evento-0" class="btn btn-success pull-right">
+                          <span class="glyphicon glyphicon-plus">
+                            
+                          </span>
+                        </button>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </form>
+                </div>
+
+                <hr>
+-->                
+              </div>
+
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../libs/jquery/jquery-2.1.4.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../libs/geturlvars.js"></script>
+<script src="../../libs/toastr/toastr.min.js"></script>
+<script src="../../libs/select2/js/select2.min.js"></script>
+
+    <script src="../../js/adminCrearCurso.js"></script>
+  </body>
+</html>

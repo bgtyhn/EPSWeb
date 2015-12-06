@@ -22,8 +22,11 @@ namespace ProyectoEPS.Models
                 System.Diagnostics.Debug.WriteLine("acción pedida: " + mensajeSolicitud.accion);
                 MethodInfo metodo = cc.GetType().GetMethod(mensajeSolicitud.accion);
                 object result = metodo.Invoke(cc, mensajeSolicitud.parametrosMetodo());
-                System.Diagnostics.Debug.WriteLine("muestra un mensaje");
-                System.Diagnostics.Debug.WriteLine(result.ToString());
+                if (result != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("muestra un mensaje");
+                    System.Diagnostics.Debug.WriteLine(result.ToString());
+                }
                 //MensajeRespuesta mensaje = new MensajeRespuesta { exito = 1 , datos = el.ToArray()};
                 mensaje = new MensajeRespuesta { exito = 1, datos = result, mensajeExito = "Operación exitosa" };
                 return mensaje;
@@ -35,5 +38,7 @@ namespace ProyectoEPS.Models
                 return mensaje;
             }
         }
+
+
     }
 }

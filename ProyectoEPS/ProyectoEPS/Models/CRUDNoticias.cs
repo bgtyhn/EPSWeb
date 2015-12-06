@@ -31,8 +31,8 @@ namespace ProyectoEPS.Models
                     noticiasConsulta.Add(new Noticia()
                     {
                         id = lectorDatos.GetInt32(0),
-                        fecha_publicacion = lectorDatos.GetString(1),
-                        fecha_expiracion = lectorDatos.GetString(2),
+                        fecha_publicacion = lectorDatos.GetOracleDate(1).ToString(),
+                        fecha_expiracion = lectorDatos.GetOracleDate(2).ToString(),
                         contenido = lectorDatos.GetString(4),
                         encabezado = lectorDatos.GetString(5),
                         titulo = lectorDatos.GetString(6)
@@ -69,8 +69,8 @@ namespace ProyectoEPS.Models
                     noticiasConsulta.Add(new Noticia()
                     {
                         id = lectorDatos.GetInt32(0),
-                        fecha_publicacion = lectorDatos.GetString(1),
-                        fecha_expiracion = lectorDatos.GetString(2),
+                        fecha_publicacion = lectorDatos.GetOracleDate(1).ToString(),
+                        fecha_expiracion = lectorDatos.GetOracleDate(2).ToString(),
                         contenido = lectorDatos.GetString(4),
                         encabezado = lectorDatos.GetString(5),
                         titulo = lectorDatos.GetString(6)
@@ -83,14 +83,65 @@ namespace ProyectoEPS.Models
             return noticiasConsulta;
         }
 
-        public void modificarNoticia()
+        public void modificarNoticia(string idN,string fecha_expiracionN,string contenidoN,string encabezadoN ,string tituloN)
         {
-            //queda pendiente hasta que se sepa como ingresar imagen
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "noticias_paquete.modificarNoticia";
+
+            OracleParameter idP = new OracleParameter("idN", OracleDbType.Int16, System.Data.ParameterDirection.Input);
+            idP.Value = int.Parse(idN);
+
+            OracleParameter fechaExpiracionP = new OracleParameter("fecha_expiracionN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            fechaExpiracionP.Value = fecha_expiracionN;
+
+            OracleParameter contenidoP = new OracleParameter("contenidoN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            contenidoP.Value = contenidoN;
+
+            OracleParameter encabezadoP = new OracleParameter("encabezadoN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            encabezadoP.Value = encabezadoN;
+
+            OracleParameter tituloP = new OracleParameter("tituloN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            tituloP.Value = tituloN;
+
+            cmd.Parameters.AddRange(new OracleParameter[] { idP, fechaExpiracionP, contenidoP, encabezadoP, tituloP });
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+
+            base.cerrarConexion();
         }
 
-        public void agregarNoticia()
+        public void agregarNoticia(string fecha_expiracionN, string contenidoN,string encabezadoN,string tituloN)
         {
-            //queda pendiente hasta que se sepa como ingresar imagen
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "noticias_paquete.agregarNoticia";
+
+            OracleParameter fechaExpiracionP = new OracleParameter("fecha_expiracionN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            fechaExpiracionP.Value = fecha_expiracionN;
+
+            OracleParameter contenidoP = new OracleParameter("contenidoN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            contenidoP.Value = contenidoN;
+
+            OracleParameter encabezadoP = new OracleParameter("encabezadoN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            encabezadoP.Value = encabezadoN;
+
+            OracleParameter tituloP = new OracleParameter("tituloN", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            tituloP.Value = tituloN;
+
+            cmd.Parameters.AddRange(new OracleParameter[] { fechaExpiracionP, contenidoP, encabezadoP, tituloP});
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            base.cerrarConexion();
+
         }
 
         public Noticia detalleNoticia(string idNoticia)
@@ -115,8 +166,8 @@ namespace ProyectoEPS.Models
                     noticiaConsulta = new Noticia()
                     {
                         id = lectorDatos.GetInt32(0),
-                        fecha_publicacion = lectorDatos.GetString(1),
-                        fecha_expiracion = lectorDatos.GetString(2),
+                        fecha_publicacion = lectorDatos.GetOracleDate(1).ToString(),
+                        fecha_expiracion = lectorDatos.GetOracleDate(2).ToString(),
                         contenido = lectorDatos.GetString(4),
                         encabezado = lectorDatos.GetString(5),
                         titulo = lectorDatos.GetString(6)

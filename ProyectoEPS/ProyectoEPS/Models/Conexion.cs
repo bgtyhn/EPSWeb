@@ -13,7 +13,7 @@ namespace ProyectoEPS.Models
 
         public Conexion()
         {
-            string oradb = "Data Source=MyDB;User Id=hr;Password=hrucaldas;";
+            string oradb = "Data Source=MyDB;User Id=EPS;Password=1234;";
             conexion = new OracleConnection(oradb);
         }
 
@@ -28,3 +28,4 @@ namespace ProyectoEPS.Models
         }
     }
 }
+

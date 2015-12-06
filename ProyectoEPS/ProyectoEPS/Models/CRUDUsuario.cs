@@ -13,40 +13,30 @@ namespace ProyectoEPS.Models
 
         }
 
-        public int inicioSesion(string userCorreo, string userPassword, string tipoUsuario)
+        public SesionUsuario inicioSesion(string userCorreo, string userPassword, string tipoUsuario)
         {
             base.abrirConexion();
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conexion;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "pk_usuarios.usuarioEnSistema";
-            OracleParameter userCorreoP = new OracleParameter("userCorreo", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            cmd.CommandText = "pk_usuarios.session_login";
+            OracleParameter userCorreoP = new OracleParameter("correoLogin", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             userCorreoP.Value = userCorreo;
-            OracleParameter userPasswordP = new OracleParameter("userPassword", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            OracleParameter userPasswordP = new OracleParameter("passwordLogin", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             userPasswordP.Value = userPassword;
             //cmd.Parameters.Add("co", OracleDbType.RefCursor).Direction = System.Data.ParameterDirection.Output;
-            OracleParameter tipoUsuarioP = new OracleParameter("tipoUsuario", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            OracleParameter tipoUsuarioP = new OracleParameter("rol", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
             tipoUsuarioP.Value = tipoUsuario;
-            OracleParameter resultado = new OracleParameter("resultado", OracleDbType.Varchar2, System.Data.ParameterDirection.Output);
-            resultado.Size = 1000;
+            OracleParameter resultado = new OracleParameter("resultado", OracleDbType.RefCursor, System.Data.ParameterDirection.Output);
             cmd.Parameters.AddRange(new OracleParameter[] { userCorreoP, userPasswordP, tipoUsuarioP, resultado });
-            try
+            OracleDataReader lectorDatos = cmd.ExecuteReader();
+            if (lectorDatos.HasRows)
             {
-                cmd.ExecuteNonQuery();
-                System.Diagnostics.Debug.WriteLine(cmd.Parameters["resultado"].Value);
-                int respuesta = int.Parse(cmd.Parameters["resultado"].Value.ToString());
-                cmd.Dispose();
-                base.cerrarConexion();
-                return respuesta;
-                
+                lectorDatos.Read();
+                return new SesionUsuario() { id = lectorDatos.GetString(0), operacionExitosa = true, rol = tipoUsuario };
             }
-            catch (OracleException e)
-            {
-                cmd.Dispose();
-                base.cerrarConexion();
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw e;
-            }
+            else
+                return new SesionUsuario() { id = string.Empty, operacionExitosa = false, rol = tipoUsuario };
         }
 
         public int sesionActiva(string toquenId)
@@ -75,6 +65,8 @@ namespace ProyectoEPS.Models
                 throw e;
             }
         }
+
+
 
     }
 }

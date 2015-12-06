@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Reflection;
 using ProyectoEPS.Models;
+using Oracle.DataAccess.Client;
 
 namespace ProyectoEPS.Controllers
 {
@@ -22,8 +23,11 @@ namespace ProyectoEPS.Controllers
                 System.Diagnostics.Debug.WriteLine("acción pedida: " + mensajeSolicitud.accion);
                 MethodInfo metodo = ca.GetType().GetMethod(mensajeSolicitud.accion);
                 object result = metodo.Invoke(ca, mensajeSolicitud.parametrosMetodo());
-                System.Diagnostics.Debug.WriteLine("muestra un mensaje");
-                System.Diagnostics.Debug.WriteLine(result.ToString());
+                if (result != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("muestra un mensaje");
+                    System.Diagnostics.Debug.WriteLine(result.ToString());
+                }
                 //MensajeRespuesta mensaje = new MensajeRespuesta { exito = 1 , datos = el.ToArray()};
                 mensaje = new MensajeRespuesta { exito = 1, datos = result, mensajeExito = "Operación exitosa" };
                 return mensaje;
@@ -34,6 +38,7 @@ namespace ProyectoEPS.Controllers
                 mensaje = new MensajeRespuesta { exito = 0, mensajeError = "Error al obtener los datos", datos = e.Message };
                 return mensaje;
             }
+            
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.IO;
+using System.Net.Http.Headers;
+using System.Drawing;
 
 namespace ProyectoEPS.Controllers
 {
@@ -25,8 +27,11 @@ namespace ProyectoEPS.Controllers
                 System.Diagnostics.Debug.WriteLine("acción pedida: " + mensajeSolicitud.accion);
                 MethodInfo metodo = cp.GetType().GetMethod(mensajeSolicitud.accion);
                 object result = metodo.Invoke(cp, mensajeSolicitud.parametrosMetodo());
-                System.Diagnostics.Debug.WriteLine("muestra un mensaje");
-                System.Diagnostics.Debug.WriteLine(result.ToString());
+                if (result != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("muestra un mensaje");
+                    System.Diagnostics.Debug.WriteLine(result.ToString());
+                }
                 //MensajeRespuesta mensaje = new MensajeRespuesta { exito = 1 , datos = el.ToArray()};
                 mensaje = new MensajeRespuesta { exito = 1, datos = result, mensajeExito = "Operación exitosa" };
                 return mensaje;
@@ -74,17 +79,18 @@ namespace ProyectoEPS.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage imagenProfesional()
+        public Image imagenProfesional()
         {
             System.Diagnostics.Debug.WriteLine("pide imagen");
             byte[] datos = new CRUDProfesionales().imagen("awe");
             System.Diagnostics.Debug.WriteLine(datos.Length);
             MemoryStream ms = new MemoryStream(datos);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-            response.Content = new StreamContent(ms);
-            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
+            response.Content = new ByteArrayContent(ms.ToArray());
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             System.Diagnostics.Debug.WriteLine("pide");
-            return response;
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
         }
     }
 }

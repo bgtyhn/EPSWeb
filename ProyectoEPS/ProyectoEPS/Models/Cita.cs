@@ -15,6 +15,8 @@ namespace ProyectoEPS.Models
         public int calificacion { get; set; }
         public string profesional { get; set; }
         public string afiliado { get; set; }
+        public string pago { get; set; }
+        public int valor { get; set; }
 
     }
 }

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- <Estilos> -->
+		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/generalStyle.css">
+
+		<!-- </Estilos> -->
+
+		<title>EPS X</title>
+		<link rel="stylesheet" href="">
+	</head>
+	<!--Auto update browser -->
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	<!--/-->
+	<body>
+
+		<div class="modal " id="modal-solicitud-registro">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Solicitar registro</h4>
+					</div>
+					<form class="form" autocomplete="off" id="solicitud-form">
+						<div class="modal-body">
+							<div class="col-xs-8 col-xs-offset-2">
+								<div class="form-group">
+									<label for="solicitud-nombreusuario">Nombre de usuario</label>
+									<input id="solicitud-nombreusuario" class="form-control" type="text" placeholder="Nombre de usuario" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-password">Contraseña</label>
+									<input id="solicitud-password" class="form-control" type="password" placeholder="Contraseña" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-nombre">Nombres</label>
+									<input id="solicitud-nombre" class="form-control" type="text" placeholder="Nombre" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-apellido">Apellidos</label>
+									<input id="solicitud-apellido" class="form-control" type="text" placeholder="Apellido" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-categoria">Categoría a la que aspira</label>
+									<select id="solicitud-categoria" class="form-control" type="text" required>
+										<option value=""></option>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-edad">Edad</label>
+									<input id="solicitud-edad" class="form-control" type="number" placeholder="Edad" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-correo">Correo</label>
+									<input id="solicitud-correo" class="form-control" type="email" placeholder="Correo electrónico" required>
+								</div>
+								<div class="form-group">
+									<label for="solicitud-cedula">Cédula</label>
+									<input id="solicitud-cedula" class="form-control" type="number" placeholder="Cédula" required>
+								</div>
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" id="solicitud-cancelar">Cancelar</button>
+							<button id="solicitud-enviar" class="btn btn-primary">
+								Enviar solicitud
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="navbar navbar-default navbar-fixed-top navbar-main navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/epsWeb/" class="navbar-brand">
+						Sistema EPS
+					</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="javascript:void(0)" id="a-solicitar-registro">
+							Solicitar registro como usuario
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<b>Login</b> 
+							<span class="caret"></span>
+						</a>
+						<ul id="login-dp" class="dropdown-menu">
+							<li>
+								<div class="row">
+									<div class="col-md-12">
+										<form class="form" id="login-form" role="form" accept-charset="UTF-8" id="login-nav" autocomplete="off">
+											<div class="form-group">
+												<select id="login-rol" class="form-control" required>
+													<option value="">Rol</option>
+													<option value="administrador">
+														Administrador
+													</option>
+													<option value="afiliado">
+														Afiliado
+													</option>
+													<option value="profesional">
+														Profesional
+													</option>
+													<option value="atencioncliente">
+														Atención al cliente
+													</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<input type="email" class="form-control" id="login-email" placeholder="e-mail" required>
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" id="login-password" placeholder="Contraseña" required>
+												<div class="help-block text-right"><a href="">Olvidó la contraseña?</a></div>
+											</div>
+											<div class="form-group">
+												<button id="login-entrar" class="btn btn-primary btn-block">Entrar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="jumbotron main-header">
+			<div class="container">
+				<h1 class="h1">
+					EPS X
+				</h1>
+				<p>
+					Nuevo sistema de información, ahora puede hacer sus trámites desde la comodidad de su hogar.
+				</p>
+			</div>
+		</div>
+
+		<div class="navbar navbar-default navbar-noticias-cursos">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-9 navbar-text">
+						Noticias
+					</div>
+					<div class="col-xs-2 navbar-text text-center">
+						Cursos
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-9" id="main-noticias">
+					
+					<!--dinamico-->
+
+				</div>
+				<div class="col-xs-3" id="main-eventos">
+					<a href="cursos.html">
+						<div class="main-evento">
+							<span class="main-tit-evento">nombre Lorem ipsum.</span>
+							<br><br>
+							<p class="text-justify">descripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum tempore officiis non debitis commodi aliquam tenetur, cumque obcaecati nisi earum!</p>
+							<span><strong>Cupos:</strong> numero_cupos</span>
+						</div>
+					</a>
+					<hr>
+
+					<a href="cursos.html">
+						<div class="main-evento">
+							<span class="main-tit-evento">nombre Lorem ipsum.</span>
+							<br><br>
+							<p class="text-justify">descripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum tempore officiis non debitis commodi aliquam tenetur, cumque obcaecati nisi earum!</p>
+							<span><strong>Cupos:</strong> numero_cupos</span>
+						</div>
+					</a>
+					<hr>
+
+					<a href="cursos.html">
+						<div class="main-evento">
+							<span class="main-tit-evento">nombre Lorem ipsum.</span>
+							<br><br>
+							<p class="text-justify">descripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum tempore officiis non debitis commodi aliquam tenetur, cumque obcaecati nisi earum!</p>
+							<span><strong>Cupos:</strong> numero_cupos</span>
+						</div>
+					</a>
+					<hr>
+
+					<a href="cursos.html">
+						<div class="main-evento">
+							<span class="main-tit-evento">nombre Lorem ipsum.</span>
+							<br><br>
+							<p class="text-justify">descripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum tempore officiis non debitis commodi aliquam tenetur, cumque obcaecati nisi earum!</p>
+							<span><strong>Cupos:</strong> numero_cupos</span>
+						</div>
+					</a>
+					<hr>
+
+					<a href="cursos.html">
+						<div class="main-evento">
+							<span class="main-tit-evento">nombre Lorem ipsum.</span>
+							<br><br>
+							<p class="text-justify">descripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum tempore officiis non debitis commodi aliquam tenetur, cumque obcaecati nisi earum!</p>
+							<span><strong>Cupos:</strong> numero_cupos</span>
+						</div>
+					</a>
+					<hr>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="container">
+				<h4 class="h4">Prototipo de sistema web de una EPS</h4>
+				<p>Diseñado y construido por ... para Bases de datos II</p>
+			</div>
+		</footer>
+
+		<!-- <Scripts> -->
+		<script src="libs/jquery/jquery-2.1.4.min.js"></script>
+		<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+		<script src="libs/geturlvars.js"></script>
+
+		<script src="js/index.js"></script>
+		<!-- </Scripts> -->
+
+
+	</body>
+</html>

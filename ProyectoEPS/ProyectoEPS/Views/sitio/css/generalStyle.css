@@ -1,0 +1,225 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+footer{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #222;
+	border-color: #080808;
+	color:#a6a6a6;
+}
+
+footer .h4 {
+	color:#d9d9d9;
+}
+
+a {
+	color: #333333;
+	text-decoration: none;
+}
+
+a:hover, a:focus{
+	color: #737373;
+	text-decoration: none;	
+}
+
+.navbar-main{
+	margin-bottom: 0;
+}
+
+.main-header{
+	margin-bottom:0px;
+}
+
+.noticia-header{
+	margin-bottom:0px;
+	padding-bottom:20px;
+}
+
+.navbar-noticias-cursos{
+	margin-bottom:40px;
+}
+
+ .navbar-noticias-cursos .navbar-text{
+	font-size: 180%;
+	color: #404040;
+}
+
+.navbar-noticias-volver .navbar-text{
+	font-size: 180%;
+	color: #404040;
+}
+
+.navbar-noticias-volver{
+	margin-top:60px;
+	margin-bottom:0px;
+}
+
+.main-noticia{
+	margin-bottom:50px;
+	width:100%;
+}
+
+.main-img-noticia{
+	float:left;
+	margin-right:20px;
+}
+
+.afiliado-img-medicamento{
+    float:left;
+    margin-right:20px;
+}
+
+.fecha-noticia{
+	color:#FFF;
+	font-size:95%;
+	font-weight:normal;
+	background-color: #b3b3b3;
+}
+
+.noticia-imagen{
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.title-noticia{
+	display: inline;
+}
+
+h1.title-noticia {
+    font-size: xx-large
+}
+h2.title-noticia {
+    font-size: x-large
+}
+h3.title-noticia {
+    font-size: large
+}
+h4.title-noticia {
+    font-size: medium
+}
+h5.title-noticia {
+    font-size: small
+}
+h6.title-noticia {
+    font-size: x-small
+}
+
+.main-evento{
+	color:#595959;
+	margin-bottom:30px;
+}
+
+.main-tit-evento{
+	font-size:120%;
+	font-weight: 600;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0; /* Removes leftover margin */
+}
+
+.afiliado-cursos{
+    margin-bottom: 50px;
+}
+
+.curso-aviso-inscripcion{
+    color:red;
+    font-size:90%;
+}
+
+.medicamento-panel{
+    margin-bottom:30px;
+}
+
+.cita-afiliado-panel{
+    margin-bottom:40px;
+}
+
+.collapse-diagnostico{
+    margin-top: 10px;
+}
+
+.btn-diagnostico{
+    width:100%;
+    margin-top:10px;
+}
+
+.multas-div{
+    margin-top:40px;
+    margin-bottom: 40px;
+}
+
+.cita-pbody{
+    font-size:115%;
+}
+
+.cita-panel{
+    margin-top:30px;
+}
+
+.panel-pendiente{
+    margin-bottom: 30px;
+}

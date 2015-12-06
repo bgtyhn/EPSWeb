@@ -13,14 +13,70 @@ namespace ProyectoEPS.Models
 
         }
 
-        public void agregarAtencionCliente()
+        public void agregarAtencionCliente(string idAC, string passwordAC, string nombreAC, string apellidosAC, string cedulaAC, string correoAC)
         {
-            //cuando se sepa como ingresar una imagen
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "atencion_cliente_paquete.agregarAtencionCliente";
+
+            OracleParameter idACP = new OracleParameter("idAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            idACP.Value = idAC;
+
+            OracleParameter passwordACP = new OracleParameter("passwordAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            passwordACP.Value = passwordAC;
+
+            OracleParameter nombreACP = new OracleParameter("nombreAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            nombreACP.Value = nombreAC;
+
+            OracleParameter apellidosACP = new OracleParameter("apellidosAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            apellidosACP.Value = apellidosAC;
+
+            OracleParameter cedulaACP = new OracleParameter("cedulaAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            cedulaACP.Value = cedulaAC;
+
+            OracleParameter correoACP = new OracleParameter("correoAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            correoACP.Value = correoAC;
+
+            cmd.Parameters.AddRange(new OracleParameter[] { idACP,passwordACP , nombreACP, apellidosACP, cedulaACP , correoACP});
+
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            base.cerrarConexion();
         }
 
-        public void editarAtencionCliente()
+        public void editarAtencionCliente(string idAC, string passwordAC, string nombreAC, string apellidosAC, string cedulaAC, string correoAC)
         {
-            //cuando la imagen
+            base.abrirConexion();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conexion;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "atencion_cliente_paquete.editarAtencionCliente";
+
+            OracleParameter idACP = new OracleParameter("idAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            idACP.Value = idAC;
+
+            OracleParameter passwordACP = new OracleParameter("passwordAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            passwordACP.Value = passwordAC;
+
+            OracleParameter nombreACP = new OracleParameter("nombreAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            nombreACP.Value = nombreAC;
+
+            OracleParameter apellidosACP = new OracleParameter("apellidosAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            apellidosACP.Value = apellidosAC;
+
+            OracleParameter cedulaACP = new OracleParameter("cedulaAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            cedulaACP.Value = cedulaAC;
+
+            OracleParameter correoACP = new OracleParameter("correoAC", OracleDbType.Varchar2, System.Data.ParameterDirection.Input);
+            correoACP.Value = correoAC;
+
+            cmd.Parameters.AddRange(new OracleParameter[] { idACP,passwordACP, nombreACP, apellidosACP, cedulaACP, correoACP });
+
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            base.cerrarConexion();
         }
 
         public void eliminarAtencionCliente(string idAC)
@@ -65,7 +121,8 @@ namespace ProyectoEPS.Models
                         password = lectorDatos.GetString(1),
                         nombre = lectorDatos.GetString(2),
                         apellidos = lectorDatos.GetString(3),
-                        cedula = lectorDatos.GetString(4)
+                        cedula = lectorDatos.GetString(4),
+                        correo = lectorDatos.GetString(6)
                     });
                 }
             }
@@ -99,7 +156,8 @@ namespace ProyectoEPS.Models
                         password = lectorDatos.GetString(1),
                         nombre = lectorDatos.GetString(2),
                         apellidos = lectorDatos.GetString(3),
-                        cedula = lectorDatos.GetString(4)
+                        cedula = lectorDatos.GetString(4),
+                        correo = lectorDatos.GetString(5)
                     };
                 }
             }
